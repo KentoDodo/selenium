@@ -8,9 +8,9 @@ services:
       - selenium-standalone-chrome-debug
     environment:
       - SELENIUM_WEB_DRIVER_PATH=http://selenium-standalone-chrome-debug:4444/wd/hub
-    working_dir: /sputnik
+    working_dir: /selenium
     volumes:
-      - ./:/sputnik
+      - ./:/selenium
 
   selenium-standalone-chrome-debug:
     image: selenium/standalone-chrome-debug
