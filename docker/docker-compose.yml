@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  main:
+    build: ./main
+    container_name: selenium_main
+    links:
+      - selenium-standalone-chrome-debug
+      - web
+      - web-nginx
+    environment:
+      URL_BASE: http://web-nginx
+      SELENIUM_WEB_DRIVER_PATH: http://selenium-standalone-chrome-debug:4444/wd/hub
+    working_dir: /selenium
+    volumes:
+      - ../main:/selenium
+
+  selenium-standalone-chrome-debug:
+    image: selenium/standalone-chrome-debug
+    container_name: selenium_standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+
+  web:
+    build: ./web
+    container_name: selenium_web
+    volumes:
+      - ../web:/web
+
+  web-nginx:
+    image: nginx
+    container_name: selenium_web-nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ../web/src:/usr/share/nginx/html
