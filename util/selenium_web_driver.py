@@ -3,9 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
-class DriverBase(object):
+class SeleniumWebDriver(object):
 
-    def __init__(self,driver_path, url_base, desired_capabilities=DesiredCapabilities.CHROME, sleep_second=5):
+    def __init__(self,driver_path, url_base, desired_capabilities=DesiredCapabilities.CHROME, sleep_second=0):
         self.driver_path = driver_path
         self.url_base = url_base
         self.sleep_second = sleep_second
